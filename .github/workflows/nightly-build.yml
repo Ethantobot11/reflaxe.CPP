@@ -9,12 +9,12 @@ jobs:
     name: Build Nightly
     steps:
       - name: Install Haxe
-        uses: krdlab/setup-haxe@v1
+        uses: krdlab/setup-haxe@v2
         with:
           haxe-version: 4.3.0
 
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v5
 
       - name: Install Reflaxe
         run: haxelib git reflaxe https://github.com/SomeRanDev/reflaxe.git

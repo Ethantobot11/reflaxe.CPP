@@ -14,12 +14,12 @@ jobs:
       matrix:
         HAXE_VERSION: [4.3.7, latest]
     steps:
-      - uses: krdlab/setup-haxe@v1
+      - uses: krdlab/setup-haxe@v2
         with:
           haxe-version: ${{ matrix.HAXE_VERSION }}
 
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup GCC
         uses: egor-tensin/setup-gcc@v1
@@ -40,12 +40,12 @@ jobs:
     runs-on: windows-latest
     name: Test on Windows (VS)
     steps:
-      - uses: krdlab/setup-haxe@v1
+      - uses: krdlab/setup-haxe@v2
         with:
           haxe-version: 4.3.7
 
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup VS
         uses: ilammy/msvc-dev-cmd@v1
@@ -67,7 +67,7 @@ jobs:
     name: Test on MacOS (Clang)
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - uses: krdlab/setup-haxe@master
         with:
