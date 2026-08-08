@@ -782,17 +782,23 @@ class Compiler extends reflaxe.DirectToStringCompiler {
         if(IComp.typeUtilHeaderRequired) {
             final headerContent = RComp.typeUtilHeaderContent();
 
+            if(headerContent == null || headerContent.trim() == "") {
+                return; 
+            }
+
             var content = "#pragma once\n\n";
             content += "#include <array>\n";
             content += "#include <functional>\n";
             content += "#include <memory>\n";
             content += "#include <optional>\n";
             content += "#include <string>\n\n";
+
             content += "#undef DEFINE_CLASS_TOSTRING\n";
             content += "#define DEFINE_CLASS_TOSTRING\\\n";
             content += "    std::string toString() { \\\n";
             content += "        return std::string(\"Class<\") + data.name + \">\"; \\\n";
             content += "    }\n\n";
+
             content += headerContent + "\n\n";
             content += IComp.compileHeaderIncludes() + "\n\n";
 
