@@ -4,6 +4,10 @@ package haxe;
 @:haxeStd
 @:coreApi
 @:valueType
+@:headerInclude("iostream", true)
+@:headerInclude("algorithm", true)
+@:headerInclude("deque", true)
+@:headerInclude("memory", true)
 class Exception extends cxx.std.Exception {
 	public var message(get, never): String;
 	private function get_message(): String {
