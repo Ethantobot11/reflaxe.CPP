@@ -36,15 +36,15 @@ extern class StringMatch {
 @:cxxStd
 @:coreApi
 @:valueType
+@:headerCode("
+#ifndef DEFINE_CLASS_TOSTRING
+#define DEFINE_CLASS_TOSTRING(...)
+#endif")
 @:headerInclude("iostream", true)
 @:headerInclude("algorithm", true)
 @:headerInclude("deque", true)
 @:headerInclude("memory", true)
 @:headerInclude("_TypeUtils.h", true)
-@:headerCode("
-#ifndef DEFINE_CLASS_TOSTRING
-#define DEFINE_CLASS_TOSTRING(...)
-#endif")
 class EReg {
 	var regex: StdRegex;
 	var smatch: StringMatch;
