@@ -33,6 +33,7 @@ extern class NativeStackItem {
 #include <algorithm>
 #include <deque>
 #include <memory>
+#include "haxe_CallStack.h"
 #ifndef HCXX_STACK_METHOD
 #define HCXX_STACK_METHOD(...) \\
 	haxe::NativeStackItem ___s(__VA_ARGS__)
