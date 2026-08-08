@@ -9,6 +9,10 @@ package;
 @:includeTypeUtils
 @:pseudoCoreApi
 @:dontGenerateDynamic
+@:headerInclude("iostream", true)
+@:headerInclude("algorithm", true)
+@:headerInclude("deque", true)
+@:headerInclude("memory", true)
 class StdImpl {
 	public static function isOfType<_Value, _Type>(v: _Value, t: _Type): Bool {
 		untyped __cpp__("if constexpr(!haxe::_unwrap_class<_Type>::iscls) {
@@ -25,6 +29,10 @@ class StdImpl {
 @:pseudoCoreApi
 @:headerOnly
 @:headerInclude("string", true)
+@:headerInclude("iostream", true)
+@:headerInclude("algorithm", true)
+@:headerInclude("deque", true)
+@:headerInclude("memory", true)
 class Std {
 	@:deprecated('Std.is is deprecated. Use Std.isOfType instead.')
 	public extern inline static function is(v: Dynamic, t: Dynamic): Bool return isOfType(v, t);
