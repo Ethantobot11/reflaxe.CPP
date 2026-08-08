@@ -7,5 +7,6 @@ package cxx.num;
 @:notNull
 @:runtimeValue
 @:coreType
+@:headerInclude("_TypeUtils.h", true)
 extern abstract SizeT from Int to Int {
 }
