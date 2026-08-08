@@ -7,6 +7,16 @@ package cxx.io;
 @:headerInclude("algorithm", true)
 @:headerInclude("deque", true)
 @:headerInclude("memory", true)
+@:headerCode("
+#include <iostream>
+#include <algorithm>
+#include <deque>
+#include <memory>
+
+namespace haxe {
+    class NativeInt64Struct;
+}
+")
 class NativeInput extends haxe.io.Input {
 	var stream: Null<cxx.Ptr<cxx.std.ios.IStream>>;
 
