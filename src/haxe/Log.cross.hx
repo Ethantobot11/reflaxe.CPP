@@ -4,6 +4,9 @@ package haxe;
 @:haxeStd
 @:pseudoCoreApi
 @:headerInclude("iostream", true)
+@:headerInclude("algorithm", true)
+@:headerInclude("deque", true)
+@:headerInclude("memory", true)
 class Log {
 	public static function formatOutput(v: String, infos: Null<PosInfos> = null): String {
 		if (infos == null) {
