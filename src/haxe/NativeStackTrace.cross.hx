@@ -5,10 +5,6 @@ package haxe;
 import haxe.CallStack.StackItem;
 
 @:valueType
-@:headerInclude("iostream", true)
-@:headerInclude("algorithm", true)
-@:headerInclude("deque", true)
-@:headerInclude("memory", true)
 extern class NativeStackItemData {
 	public var classname: String;
 	public var method: String;
@@ -19,10 +15,6 @@ extern class NativeStackItemData {
 }
 
 @:unsafePtrType
-@:headerInclude("iostream", true)
-@:headerInclude("algorithm", true)
-@:headerInclude("deque", true)
-@:headerInclude("memory", true)
 extern class NativeStackItem {
 	public var data: NativeStackItemData;
 	public static function copyStack(): Array<NativeStackItemData>;
@@ -35,55 +27,50 @@ extern class NativeStackItem {
 @:headerInclude("algorithm", true)
 @:headerInclude("deque", true)
 @:headerInclude("memory", true)
+@:headerInclude("string", true)
 @:headerCode("
+#ifndef HCXX_STACK_METHOD
 #define HCXX_STACK_METHOD(...) \\
 	haxe::NativeStackItem ___s(__VA_ARGS__)
+#endif
 
+#ifndef HCXX_LINE
 #define HCXX_LINE(line_num) \\
 	___s.data.line = line_num
+#endif
 
 namespace haxe {
 
-// Data for the call stack
 struct NativeStackItemData {
 	std::string classname;
 	std::string method;
-
 	std::string file;
 	int line;
 	int col;
 };
 
-// Manages the call stack data
 class NativeStackItem {
 public:
 	NativeStackItemData data;
 
-	// Generate an item at the start of a function
 	NativeStackItem(std::string file, int line, int col, std::string classname, std::string method) {
 		data.file = file;
 		data.line = line;
 		data.col = col;
 		data.classname = classname;
 		data.method = method;
-
-		// Do not copy by value, use pointers to avoid multiple destructions
 		getStack()->push_front(this);
 	}
 
-	// Once this object goes out of scope (the function is complete),
-	// it removes itself from the static list.
 	~NativeStackItem() {
 		getStack()->pop_front();
 	}
 
-	// Hack to use static variable in header only class
 	static std::shared_ptr<std::deque<NativeStackItem*>> getStack() {
 		static auto stack = std::make_shared<std::deque<NativeStackItem*>>();
 		return stack;
 	}
 
-	// Copy the data specifically (so copy/destruction doesn't occur on manager object)
 	static std::shared_ptr<std::deque<NativeStackItemData>> copyStack() {
 		auto result = std::make_shared<std::deque<NativeStackItemData>>();
 		for(auto& item : *getStack()) {
@@ -95,15 +82,9 @@ public:
 
 }
 ")
-@:headerInclude("deque", true)
-@:headerInclude("string", true)
-@:headerInclude("iostream", true)
-@:headerInclude("algorithm", true)
-@:headerInclude("memory", true)
 class NativeStackTrace {
 	@:noCallstack
-	public static function saveStack(exception: Any): Void {
-	}
+	public static function saveStack(exception: Any): Void {}
 
 	@:noCallstack
 	public static function callStack(): Array<NativeStackItemData> {
@@ -118,7 +99,6 @@ class NativeStackTrace {
 	@:noCallstack
 	public static function toHaxe(nativeStackTrace: Array<NativeStackItemData>, skip: Int = 0): Array<StackItem> {
 		final result = [];
-
 		for(i in 0...nativeStackTrace.length) {
 			if(i <= skip) {
 				continue;
@@ -126,7 +106,6 @@ class NativeStackTrace {
 			final item = nativeStackTrace[i];
 			result.push(FilePos(Method(item.classname, item.method), item.file, item.line, item.col));
 		}
-
 		return result;
 	}
 }
@@ -135,17 +114,11 @@ class NativeStackTrace {
 
 @:dox(hide)
 @:noCompletion
-@:headerInclude("iostream", true)
-@:headerInclude("algorithm", true)
-@:headerInclude("deque", true)
-@:headerInclude("memory", true)
 extern class NativeStackTrace {
 	public static inline extern function saveStack(exception: Any): Void {}
-	public static inline extern function callStack(): Array<Any> { err(); return []; }
-	public static inline extern function exceptionStack(): Array<Any> { err(); return []; }
-	public static inline extern function toHaxe(nativeStackTrace: Array<Any>, skip: Int = 0): Array<haxe.CallStack.StackItem> { err(); return []; }
-
-	static inline extern function err() Sys.println("Call stack features must be enabled using -D cxx_callstack.");
+	public static inline extern function callStack(): Array<Any> { return []; }
+	public static inline extern function exceptionStack(): Array<Any> { return []; }
+	public static inline extern function toHaxe(nativeStackTrace: Array<Any>, skip: Int = 0): Array<haxe.CallStack.StackItem> { return []; }
 }
 
 #end
