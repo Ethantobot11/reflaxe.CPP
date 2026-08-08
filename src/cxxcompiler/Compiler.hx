@@ -783,6 +783,11 @@ class Compiler extends reflaxe.DirectToStringCompiler {
 			final headerContent = RComp.typeUtilHeaderContent();
 
 			var content = "#pragma once\n\n";
+			
+			content += "#ifndef DEFINE_CLASS_TOSTRING\n";
+			content += "#define DEFINE_CLASS_TOSTRING(...)\n";
+			content += "#endif\n\n";
+
 			content += IComp.compileHeaderIncludes() + "\n\n";
 			content += headerContent + "\n\n";
 			setExtraFile(HeaderFolder + "/" + TypeUtilsHeaderFile + HeaderExt, content); 
