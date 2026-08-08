@@ -29,6 +29,11 @@ extern class NativeStackItem {
 @:headerInclude("memory", true)
 @:headerInclude("string", true)
 @:headerCode("
+@:headerCode("
+#include <iostream>
+#include <algorithm>
+#include <deque>
+#include <memory>
 #ifndef HCXX_STACK_METHOD
 #define HCXX_STACK_METHOD(...) \\
 	haxe::NativeStackItem ___s(__VA_ARGS__)
