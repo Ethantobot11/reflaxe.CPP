@@ -26,7 +26,6 @@ class CompilerInit {
 		#if macro
 		final system = Context.definedValue("reflaxe_cpp_system_override") ?? Sys.systemName();
 		HaxeCompiler.define("reflaxe_cpp_" + system.toLowerCase());
-
 		#if cxx_callstack
 		HaxeCompiler.addMetadata("@:headerInclude(\"haxe_NativeStackTrace.h\", true)", "haxe.Exception");
 		HaxeCompiler.addMetadata("@:headerInclude(\"haxe_CallStack.h\", true)", "haxe.Exception");
