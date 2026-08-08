@@ -233,7 +233,9 @@ class EReg {
 				break;
 			}
 			var p = matchedPos();
-			buf.add(s.substr(offset, p.pos - offset));
+			var subStrChunk = s.substr(offset, p.pos - offset);
+			buf.add(subStrChunk);
+			
 			buf.add(f(this));
 			if(p.len == 0) {
 				buf.add(s.substr(p.pos, 1));
