@@ -36,6 +36,11 @@ extern class NativeStackItem {
 #include <algorithm>
 #include <deque>
 #include <memory>
+
+namespace haxe {
+    class StackItem;
+}
+
 #ifndef HCXX_STACK_METHOD
 #define HCXX_STACK_METHOD(...) \\
 	haxe::NativeStackItem ___s(__VA_ARGS__)
@@ -47,8 +52,6 @@ extern class NativeStackItem {
 #endif
 
 namespace haxe {
-
-class ___StackItem;
 
 struct NativeStackItemData {
 	std::string classname;
