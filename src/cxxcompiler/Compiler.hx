@@ -782,6 +782,23 @@ class Compiler extends reflaxe.DirectToStringCompiler {
         if(IComp.typeUtilHeaderRequired) {
             final headerContent = RComp.typeUtilHeaderContent();
             var content = "#pragma once\n\n";
+            content += "#include <array>\n";
+            content += "#include <functional>\n";
+            content += "#include <memory>\n";
+            content += "#include <optional>\n";
+            content += "#include <string>\n\n";
+            content += "namespace haxe {\n";
+            content += "    template<typename T> struct _class;\n\n";
+            content += "    template<std::size_t sf_size, std::size_t if_size, typename Super = void>\n";
+            content += "    struct _class_data {\n";
+            content += "        using super_class = _class<Super>;\n";
+            content += "        constexpr static bool has_super_class = std::is_same<Super, void>::value;\n\n";
+            content += "        const char* name = \"<unknown>\";\n";
+            content += "        const std::array<const char*, sf_size> static_fields;\n";
+            content += "        const std::array<const char*, if_size> instance_fields;\n";
+            content += "        bool has_dyn = false;\n";
+            content += "    };\n";
+            content += "}\n\n";
             content += "#undef DEFINE_CLASS_TOSTRING\n";
             content += "#define DEFINE_CLASS_TOSTRING\\\n";
             content += "    std::string toString() { \\\n";
@@ -789,7 +806,6 @@ class Compiler extends reflaxe.DirectToStringCompiler {
             content += "    }\n\n";
             content += headerContent + "\n\n";
             content += IComp.compileHeaderIncludes() + "\n\n";
-
             setExtraFile(HeaderFolder + "/" + TypeUtilsHeaderFile + HeaderExt, content); 
         }
     }
