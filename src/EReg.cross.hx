@@ -41,6 +41,10 @@ extern class StringMatch {
 @:headerInclude("deque", true)
 @:headerInclude("memory", true)
 @:headerInclude("_TypeUtils.h", true)
+@:headerCode("
+#ifndef DEFINE_CLASS_TOSTRING
+#define DEFINE_CLASS_TOSTRING(...)
+#endif")
 class EReg {
 	var regex: StdRegex;
 	var smatch: StringMatch;
