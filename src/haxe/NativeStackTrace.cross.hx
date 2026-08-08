@@ -5,6 +5,10 @@ package haxe;
 import haxe.CallStack.StackItem;
 
 @:valueType
+@:headerInclude("iostream", true)
+@:headerInclude("algorithm", true)
+@:headerInclude("deque", true)
+@:headerInclude("memory", true)
 extern class NativeStackItemData {
 	public var classname: String;
 	public var method: String;
@@ -15,6 +19,10 @@ extern class NativeStackItemData {
 }
 
 @:unsafePtrType
+@:headerInclude("iostream", true)
+@:headerInclude("algorithm", true)
+@:headerInclude("deque", true)
+@:headerInclude("memory", true)
 extern class NativeStackItem {
 	public var data: NativeStackItemData;
 	public static function copyStack(): Array<NativeStackItemData>;
@@ -23,6 +31,10 @@ extern class NativeStackItem {
 @:dox(hide)
 @:haxeStd
 @:noCompletion
+@:headerInclude("iostream", true)
+@:headerInclude("algorithm", true)
+@:headerInclude("deque", true)
+@:headerInclude("memory", true)
 @:headerCode("
 #define HCXX_STACK_METHOD(...) \\
 	haxe::NativeStackItem ___s(__VA_ARGS__)
@@ -85,6 +97,9 @@ public:
 ")
 @:headerInclude("deque", true)
 @:headerInclude("string", true)
+@:headerInclude("iostream", true)
+@:headerInclude("algorithm", true)
+@:headerInclude("memory", true)
 class NativeStackTrace {
 	@:noCallstack
 	public static function saveStack(exception: Any): Void {
@@ -120,6 +135,10 @@ class NativeStackTrace {
 
 @:dox(hide)
 @:noCompletion
+@:headerInclude("iostream", true)
+@:headerInclude("algorithm", true)
+@:headerInclude("deque", true)
+@:headerInclude("memory", true)
 extern class NativeStackTrace {
 	public static inline extern function saveStack(exception: Any): Void {}
 	public static inline extern function callStack(): Array<Any> { err(); return []; }
