@@ -1331,12 +1331,7 @@ class Classes extends SubCompiler {
 	**/
 	function generateHeaderFile() {
 		final headerFilename = getHeaderFilename();
-		Main.setExtraFileIfEmpty(headerFilename, 
-            "#pragma once\n\n" +
-            "#ifndef DEFINE_CLASS_TOSTRING\n" +
-            "#define DEFINE_CLASS_TOSTRING(...)\n" +
-            "#endif\n"
-        );
+		Main.setExtraFileIfEmpty(headerFilename, "#pragma once");
 
 		if(!shouldGenerateHeader()) {
 			return;

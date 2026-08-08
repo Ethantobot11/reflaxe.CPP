@@ -290,12 +290,7 @@ class Enums extends SubCompiler {
 		final headerFilePath = Compiler.HeaderFolder + "/" + headerFilename;
 
 		// pragma once
-		Main.setExtraFileIfEmpty(headerFilePath, 
-            "#pragma once\n\n" +
-            "#ifndef DEFINE_CLASS_TOSTRING\n" +
-            "#define DEFINE_CLASS_TOSTRING(...)\n" +
-            "#endif\n"
-        );
+		Main.setExtraFileIfEmpty(headerFilePath, "#pragma once");
 
 		// Compile headers
 		IComp.appendIncludesToExtraFileWithoutRepeats(headerFilePath, IComp.compileHeaderIncludes(), 1);
