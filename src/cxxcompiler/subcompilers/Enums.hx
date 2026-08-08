@@ -286,11 +286,14 @@ class Enums extends SubCompiler {
 		// Finish C++ class
 		declaration += "\n};";
 
-		// Start output
 		final headerFilePath = Compiler.HeaderFolder + "/" + headerFilename;
 
-		// pragma once
-		Main.setExtraFileIfEmpty(headerFilePath, "#pragma once");
+        Main.setExtraFileIfEmpty(headerFilePath, 
+            "#pragma once\n\n" +
+            "#ifndef DEFINE_CLASS_TOSTRING\n" +
+            "#define DEFINE_CLASS_TOSTRING(...)\n" +
+            "#endif\n"
+        );
 
 		// Compile headers
 		IComp.appendIncludesToExtraFileWithoutRepeats(headerFilePath, IComp.compileHeaderIncludes(), 1);

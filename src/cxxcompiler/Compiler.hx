@@ -1147,7 +1147,12 @@ class Compiler extends reflaxe.DirectToStringCompiler {
 		final headerFilePath = HeaderFolder + "/" + headerFilename;
 
 		// pragma once
-		setExtraFileIfEmpty(headerFilePath, "#pragma once");
+		setExtraFileIfEmpty(headerFilePath, 
+            "#pragma once\n\n" +
+            "#ifndef DEFINE_CLASS_TOSTRING\n" +
+            "#define DEFINE_CLASS_TOSTRING(...)\n" +
+            "#endif\n"
+        );
 
 		// Compile headers
 		IComp.appendIncludesToExtraFileWithoutRepeats(headerFilePath, IComp.compileHeaderIncludes(), 1);
@@ -1212,7 +1217,12 @@ class Compiler extends reflaxe.DirectToStringCompiler {
 			if(headerCode != null) {
 				final headerFilePath = HeaderFolder + "/" + filename + HeaderExt;
 				
-				setExtraFileIfEmpty(headerFilePath, "#pragma once");
+				setExtraFileIfEmpty(headerFilePath, 
+					"#pragma once\n\n" +
+					"#ifndef DEFINE_CLASS_TOSTRING\n" +
+					"#define DEFINE_CLASS_TOSTRING(...)\n" +
+					"#endif\n"
+				);
 				IComp.appendIncludesToExtraFileWithoutRepeats(headerFilePath, IComp.compileHeaderIncludes(), 1);
 				appendToExtraFile(headerFilePath, IComp.compileForwardDeclares(), 2);
 				appendToExtraFile(headerFilePath, headerCode + "\n", 2);
