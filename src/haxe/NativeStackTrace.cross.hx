@@ -29,7 +29,6 @@ extern class NativeStackItem {
 @:headerInclude("memory", true)
 @:headerInclude("string", true)
 @:headerCode("
-@:headerCode("
 #include <iostream>
 #include <algorithm>
 #include <deque>
