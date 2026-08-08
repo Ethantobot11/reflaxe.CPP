@@ -753,6 +753,9 @@ class Compiler extends reflaxe.DirectToStringCompiler {
 		// Generate anonymous structures header.
 		if(genAnonStructHeader) {
 			var content = "#pragma once\n\n";
+			content += "#ifndef DEFINE_CLASS_TOSTRING\n";
+			content += "#define DEFINE_CLASS_TOSTRING(...)\n";
+			content += "#endif\n\n";
 			content += "#include \"" + optionalInfoHeaderName + "\"\n\n";
 			content += IComp.compileHeaderIncludes() + "\n\n";
 			content += "namespace haxe {\n\n";
@@ -764,6 +767,9 @@ class Compiler extends reflaxe.DirectToStringCompiler {
 		// Generate haxe::optional_info header.
 		if(genAnonStructHeader || IComp.anonUtilHeaderRequired) {
 			var content = "#pragma once\n\n";
+			content += "#ifndef DEFINE_CLASS_TOSTRING\n";
+			content += "#define DEFINE_CLASS_TOSTRING(...)\n";
+			content += "#endif\n\n";
 			content += "#include " + IComp.wrapInclude(OptionalInclude[0], OptionalInclude[1]) + "\n";
 			content += "#include " + IComp.wrapInclude(SharedPtrInclude[0], SharedPtrInclude[1]) + "\n";
 			if(UniquePtrInclude[0] != SharedPtrInclude[0]) {
@@ -799,6 +805,9 @@ class Compiler extends reflaxe.DirectToStringCompiler {
 			final headerContent = haxeUtilsHeaderContent();
 
 			var content = "#pragma once\n\n";
+			content += "#ifndef DEFINE_CLASS_TOSTRING\n";
+			content += "#define DEFINE_CLASS_TOSTRING(...)\n";
+			content += "#endif\n\n";
 			content += headerContent + "\n\n";
 			setExtraFile(HeaderFolder + "/" + HaxeUtilsHeaderFile + HeaderExt, content); 
 		}
@@ -822,6 +831,9 @@ class Compiler extends reflaxe.DirectToStringCompiler {
 
 			// dynamic/Dynamic.h
 			var content = "#pragma once\n\n";
+			content += "#ifndef DEFINE_CLASS_TOSTRING\n";
+			content += "#define DEFINE_CLASS_TOSTRING(...)\n";
+			content += "#endif\n\n";
 			content += IComp.compileHeaderIncludes() + "\n\n";
 			content += headerContent + "\n\n";
 			setExtraFile(HeaderFolder + "/dynamic/Dynamic" + HeaderExt, content);
