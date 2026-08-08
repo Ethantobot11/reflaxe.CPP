@@ -6,6 +6,7 @@ package cxx.num;
 @:coreType
 @:notNull
 @:runtimeValue
+@:headerInclude("_TypeUtils.h", true)
 extern abstract Float32 to Float from Float {
 
     @:op(-A)
