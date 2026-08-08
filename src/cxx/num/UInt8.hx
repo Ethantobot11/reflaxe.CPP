@@ -11,5 +11,4 @@ package cxx.num;
 @:coreType
 @:notNull
 @:runtimeValue
-@:headerInclude("_TypeUtils.h", true)
 extern abstract UInt8 to Int from Int {}
