@@ -4,7 +4,10 @@ package;
 @:cxxStd
 @:haxeStd
 @:pseudoCoreApi
+@:headerInclude("iostream", true)
 @:headerInclude("algorithm", true)
+@:headerInclude("deque", true)
+@:headerInclude("memory", true)
 @:headerInclude("cctype", true)
 @:dontGenerateDynamic
 @:unreflective
