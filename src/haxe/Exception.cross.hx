@@ -11,10 +11,6 @@ package haxe;
 @:headerInclude("haxe_CallStack.h", true)
 @:headerInclude("haxe_NativeStackTrace.h", true)
 @:headerCode("
-#include <iostream>
-#include <algorithm>
-#include <deque>
-#include <memory>
 #ifndef HCXX_STACK_METHOD
 #define HCXX_STACK_METHOD(...)
 #endif
