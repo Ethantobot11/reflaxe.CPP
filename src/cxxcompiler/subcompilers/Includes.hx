@@ -471,6 +471,13 @@ class Includes extends SubCompiler {
 	// compile/format for the output.
 	function compileIncludes(includeArr: Array<String>): String {
 		callAllLazyIncludes();
+		
+		if(includeArr.contains("\"_TypeUtils.h\"") || includeArr.contains("<_TypeUtils.h>")) {
+			includeArr.remove("\"_TypeUtils.h\"");
+			includeArr.remove("<_TypeUtils.h>");
+			includeArr.unshift("\"_TypeUtils.h\"");
+		}
+
 		return if(includeArr.length > 0) {
 			includeArr.sorted(Sort.includeBracketOrder).map(i -> "#include " + i).join("\n");
 		} else {
