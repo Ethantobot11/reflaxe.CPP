@@ -11,5 +11,4 @@ package cxx.num;
 @:coreType
 @:notNull
 @:runtimeValue
-@:headerInclude("_TypeUtils.h", true)
 extern abstract Int32 to Int from Int {}
