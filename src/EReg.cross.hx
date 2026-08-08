@@ -36,6 +36,11 @@ extern class StringMatch {
 @:cxxStd
 @:coreApi
 @:valueType
+@:headerInclude("iostream", true)
+@:headerInclude("algorithm", true)
+@:headerInclude("deque", true)
+@:headerInclude("memory", true)
+@:headerInclude("_TypeUtils.h", true)
 class EReg {
 	var regex: StdRegex;
 	var smatch: StringMatch;
