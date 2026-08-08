@@ -8,6 +8,8 @@ package haxe;
 @:headerInclude("algorithm", true)
 @:headerInclude("deque", true)
 @:headerInclude("memory", true)
+@:headerInclude("haxe_CallStack.h", true)
+@:headerInclude("haxe_NativeStackTrace.h", true)
 class Exception extends cxx.std.Exception {
 	public var message(get, never): String;
 	private function get_message(): String {
