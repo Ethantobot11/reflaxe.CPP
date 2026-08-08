@@ -2,6 +2,10 @@ package cxx;
 
 @:cxxStd
 @:cppStd
+@:headerInclude("iostream", true)
+@:headerInclude("algorithm", true)
+@:headerInclude("deque", true)
+@:headerInclude("memory", true)
 extern class Std {
 	@:native("std::cin")
 	@:include("iostream", true)
