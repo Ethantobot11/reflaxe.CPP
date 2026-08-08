@@ -3,6 +3,10 @@ package cxx.io;
 @:cxxStd
 @:haxeStd
 @:valueType
+@:headerInclude("iostream", true)
+@:headerInclude("algorithm", true)
+@:headerInclude("deque", true)
+@:headerInclude("memory", true)
 class NativeInput extends haxe.io.Input {
 	var stream: Null<cxx.Ptr<cxx.std.ios.IStream>>;
 
