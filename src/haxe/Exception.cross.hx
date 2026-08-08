@@ -10,13 +10,6 @@ package haxe;
 @:headerInclude("memory", true)
 @:headerInclude("haxe_CallStack.h", true)
 @:headerInclude("haxe_NativeStackTrace.h", true)
-@:headerCode("
-#ifndef HCXX_STACK_METHOD
-#define HCXX_STACK_METHOD(...)
-#endif
-#ifndef HCXX_LINE
-#define HCXX_LINE(...)
-#endif")
 class Exception extends cxx.std.Exception {
 	public var message(get, never): String;
 	private function get_message(): String {
@@ -28,20 +21,9 @@ class Exception extends cxx.std.Exception {
 		#if cxx_callstack
 		return _stack;
 		#else
-		NativeStackTrace.err();
 		return [];
 		#end
 	}
-	#if haxe5
-	private function set_stack(stack: CallStack): CallStack {
-		#if cxx_callstack
-		return _stack = stack;
-		#else
-		NativeStackTrace.err();
-		return [];
-		#end
-	}
-	#end
 
 	public var previous(get, never): Null<Exception>;
 	private function get_previous(): Null<Exception> {
@@ -53,8 +35,6 @@ class Exception extends cxx.std.Exception {
 		return 0;
 	}
 
-	// ---
-
 	static private function caught(value: Any): Exception {
 		return new Exception(Std.string(value));
 	}
@@ -62,8 +42,6 @@ class Exception extends cxx.std.Exception {
 	static private function thrown(value: Any): Any {
 		return 0;
 	}
-
-	// ---
 
 	var _message: String;
 	var _previous: Null<cxx.SharedPtr<Exception>>;
