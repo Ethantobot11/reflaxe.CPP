@@ -117,7 +117,7 @@ final class Sys_GetEnv {
 		cxx.Stdlib.free(libvar);
 		return str;
 		#else
-		final result = cxx.Stdlib.getEnv(@:privateAccess s.c_str());
+		final result = untyped __cpp__("std::getenv(s.c_str())");
 		return result.isNull() ? null : result.toString();
 		#end
 	}
