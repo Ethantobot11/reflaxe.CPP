@@ -36,10 +36,6 @@ extern class StringMatch {
 @:cxxStd
 @:coreApi
 @:valueType
-@:headerCode("
-#ifndef DEFINE_CLASS_TOSTRING
-#define DEFINE_CLASS_TOSTRING(...)
-#endif")
 @:headerInclude("iostream", true)
 @:headerInclude("algorithm", true)
 @:headerInclude("deque", true)
