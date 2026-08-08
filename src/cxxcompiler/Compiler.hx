@@ -779,22 +779,20 @@ class Compiler extends reflaxe.DirectToStringCompiler {
 	// Generate the header containing all the
 	// type information used for reflection.
 	function generateTypeUtilsHeader() {
-		if(IComp.typeUtilHeaderRequired) {
-			final headerContent = RComp.typeUtilHeaderContent();
-
-			var content = "#pragma once\n\n";
-
-			content += "#undef DEFINE_CLASS_TOSTRING\n";
+        if(IComp.typeUtilHeaderRequired) {
+            final headerContent = RComp.typeUtilHeaderContent();
+            var content = "#pragma once\n\n";
+            content += "#undef DEFINE_CLASS_TOSTRING\n";
             content += "#define DEFINE_CLASS_TOSTRING\\\n";
             content += "    std::string toString() { \\\n";
             content += "        return std::string(\"Class<\") + data.name + \">\"; \\\n";
             content += "    }\n\n";
+            content += headerContent + "\n\n";
+            content += IComp.compileHeaderIncludes() + "\n\n";
 
-			content += IComp.compileHeaderIncludes() + "\n\n";
-			content += headerContent + "\n\n";
-			setExtraFile(HeaderFolder + "/" + TypeUtilsHeaderFile + HeaderExt, content); 
-		}
-	}
+            setExtraFile(HeaderFolder + "/" + TypeUtilsHeaderFile + HeaderExt, content); 
+        }
+    }
 
 	function generateHaxeUtilsHeader() {
 		if(IComp.haxeUtilHeaderRequired) {
