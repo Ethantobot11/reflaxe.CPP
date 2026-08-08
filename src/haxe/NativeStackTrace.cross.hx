@@ -49,7 +49,6 @@ extern class NativeStackItem {
 namespace haxe {
 
 class ___StackItem;
-using StackItem = ___StackItem;
 
 struct NativeStackItemData {
 	std::string classname;
