@@ -38,6 +38,7 @@ extern class NativeStackItem {
 #include <memory>
 
 namespace haxe {
+	class Exception;
     class StackItem;
 }
 
