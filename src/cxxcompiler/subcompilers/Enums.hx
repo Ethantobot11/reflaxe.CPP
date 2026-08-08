@@ -293,7 +293,7 @@ class Enums extends SubCompiler {
 		Main.setExtraFileIfEmpty(headerFilePath, 
             "#pragma once\n\n" +
             "#ifndef DEFINE_CLASS_TOSTRING\n" +
-            "  #define DEFINE_CLASS_TOSTRING(...)\n" +
+            "#define DEFINE_CLASS_TOSTRING(...) /* pending type utils */\n" +
             "#endif\n"
         );
 

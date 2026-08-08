@@ -783,6 +783,13 @@ class Compiler extends reflaxe.DirectToStringCompiler {
 			final headerContent = RComp.typeUtilHeaderContent();
 
 			var content = "#pragma once\n\n";
+
+			content += "#undef DEFINE_CLASS_TOSTRING\n";
+            content += "#define DEFINE_CLASS_TOSTRING\\\n";
+            content += "    std::string toString() { \\\n";
+            content += "        return std::string(\"Class<\") + data.name + \">\"; \\\n";
+            content += "    }\n\n";
+
 			content += IComp.compileHeaderIncludes() + "\n\n";
 			content += headerContent + "\n\n";
 			setExtraFile(HeaderFolder + "/" + TypeUtilsHeaderFile + HeaderExt, content); 
@@ -1133,7 +1140,7 @@ class Compiler extends reflaxe.DirectToStringCompiler {
 		setExtraFileIfEmpty(headerFilePath, 
             "#pragma once\n\n" +
             "#ifndef DEFINE_CLASS_TOSTRING\n" +
-            "  #define DEFINE_CLASS_TOSTRING(...)\n" +
+            "#define DEFINE_CLASS_TOSTRING(...) /* pending type utils */\n" +
             "#endif\n"
         );
 
@@ -1203,7 +1210,7 @@ class Compiler extends reflaxe.DirectToStringCompiler {
 				setExtraFileIfEmpty(headerFilePath, 
 					"#pragma once\n\n" +
 					"#ifndef DEFINE_CLASS_TOSTRING\n" +
-					"  #define DEFINE_CLASS_TOSTRING(...)\n" +
+					"#define DEFINE_CLASS_TOSTRING(...) /* pending type utils */\n" +
 					"#endif\n"
 				);
 				IComp.appendIncludesToExtraFileWithoutRepeats(headerFilePath, IComp.compileHeaderIncludes(), 1);

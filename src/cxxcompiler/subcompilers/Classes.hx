@@ -1334,7 +1334,7 @@ class Classes extends SubCompiler {
 		Main.setExtraFileIfEmpty(headerFilename, 
             "#pragma once\n\n" +
             "#ifndef DEFINE_CLASS_TOSTRING\n" +
-            "  #define DEFINE_CLASS_TOSTRING(...)\n" +
+            "#define DEFINE_CLASS_TOSTRING(...) /* pending type utils */\n" +
             "#endif\n"
         );
 
