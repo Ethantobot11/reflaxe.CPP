@@ -5,6 +5,7 @@ package haxe;
 import haxe.CallStack.StackItem;
 
 @:valueType
+@:headerInclude("haxe_CallStack.h", true)
 extern class NativeStackItemData {
 	public var classname: String;
 	public var method: String;
@@ -15,6 +16,7 @@ extern class NativeStackItemData {
 }
 
 @:unsafePtrType
+@:headerInclude("haxe_CallStack.h", true)
 extern class NativeStackItem {
 	public var data: NativeStackItemData;
 	public static function copyStack(): Array<NativeStackItemData>;
@@ -28,11 +30,18 @@ extern class NativeStackItem {
 @:headerInclude("deque", true)
 @:headerInclude("memory", true)
 @:headerInclude("string", true)
+@:headerInclude("haxe_CallStack.h", true)
 @:headerCode("
 #include <iostream>
 #include <algorithm>
 #include <deque>
 #include <memory>
+
+namespace haxe {
+	class Exception;
+    class StackItem;
+}
+
 #ifndef HCXX_STACK_METHOD
 #define HCXX_STACK_METHOD(...) \\
 	haxe::NativeStackItem ___s(__VA_ARGS__)
@@ -86,6 +95,7 @@ public:
 
 }
 ")
+@:headerInclude("haxe_CallStack.h", true)
 class NativeStackTrace {
 	@:noCallstack
 	public static function saveStack(exception: Any): Void {}
