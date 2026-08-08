@@ -47,6 +47,7 @@ using cxxcompiler.helpers.DefineHelper;
 using cxxcompiler.helpers.Error;
 using cxxcompiler.helpers.MetaHelper;
 using cxxcompiler.helpers.CppTypeHelper;
+using StringTools;
 
 class Compiler extends reflaxe.DirectToStringCompiler {
 	/**
