@@ -10,6 +10,13 @@ package haxe;
 @:headerInclude("memory", true)
 @:headerInclude("haxe_CallStack.h", true)
 @:headerInclude("haxe_NativeStackTrace.h", true)
+@:headerCode("
+#ifndef HCXX_STACK_METHOD
+#define HCXX_STACK_METHOD(...)
+#endif
+#ifndef HCXX_LINE
+#define HCXX_LINE(...)
+#endif")
 class Exception extends cxx.std.Exception {
 	public var message(get, never): String;
 	private function get_message(): String {
