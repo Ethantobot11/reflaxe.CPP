@@ -30,6 +30,7 @@ class CompilerInit {
 		#if cxx_callstack
 		HaxeCompiler.addMetadata("@:headerInclude(\"haxe_NativeStackTrace.h\", true)", "haxe.Exception");
 		HaxeCompiler.addMetadata("@:headerInclude(\"haxe_CallStack.h\", true)", "haxe.Exception");
+		HaxeCompiler.addMetadata("@:headerCode(\"namespace haxe { class StackItem; }\")", "haxe.Exception");
 		#end
 		#end
 
