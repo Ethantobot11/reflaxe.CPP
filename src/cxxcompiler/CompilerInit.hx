@@ -23,10 +23,14 @@ class CompilerInit {
 		#end
 
 		// Define platform for API usage
-		// Can simulate platforms using `-D reflaxe_cpp_system_override=PLATFORM_NAME` (usually for testing)
 		#if macro
 		final system = Context.definedValue("reflaxe_cpp_system_override") ?? Sys.systemName();
 		HaxeCompiler.define("reflaxe_cpp_" + system.toLowerCase());
+
+		#if cxx_callstack
+		HaxeCompiler.addMetadata("@:headerInclude(\"haxe_NativeStackTrace.h\", true)", "haxe.Exception");
+		HaxeCompiler.addMetadata("@:headerInclude(\"haxe_CallStack.h\", true)", "haxe.Exception");
+		#end
 		#end
 
 		ReflectCompiler.AddCompiler(new Compiler(), {
@@ -54,7 +58,6 @@ class CompilerInit {
 		// Ensure the Haxe compiler keeps every IMap field.
 		#if macro
 		HaxeCompiler.addMetadata("@:keep", "haxe.IMap");
-		// haxe.macro.Compiler.addMetadata("@:noCallstack", "haxe.CallStack", "callStack", true);
 		#end
 	}
 
