@@ -11,6 +11,9 @@ package haxe;
 @:headerInclude("haxe_CallStack.h", true)
 @:headerInclude("haxe_NativeStackTrace.h", true)
 @:headerCode("
+namespace haxe {
+    struct StackItem;
+}
 #include <iostream>
 #include <algorithm>
 #include <deque>
