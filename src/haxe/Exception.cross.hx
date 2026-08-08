@@ -12,7 +12,7 @@ package haxe;
 @:headerInclude("haxe_NativeStackTrace.h", true)
 @:headerCode("
 namespace haxe {
-	enum class StackItem;
+	class StackItem;
 }
 
 #ifndef HCXX_STACK_METHOD
