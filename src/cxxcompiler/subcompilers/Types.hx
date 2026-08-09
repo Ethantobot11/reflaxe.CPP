@@ -134,8 +134,13 @@ class Types extends SubCompiler {
 	// Does not cause error if Type compiles to null.
 	// Can be safely passed null.
 	public function maybeCompileTypeImpl(t: Null<Type>, pos: Position, asValue: Bool = false, dependent: Bool = false): Null<String> {
-		if(t == null) {
-			return null;
+		if (t != null) {
+			switch (t) {
+				case TAbstract(absRef, params) if (absRef.get().name == "Int64" && absRef.get().pack.join(".") == "haxe"):
+					IComp.addInclude("cstdint", true, true);
+					return "int64_t";
+				default:
+			}
 		}
 
 		// @:nativeTypeCode
