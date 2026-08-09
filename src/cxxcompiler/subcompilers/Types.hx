@@ -261,10 +261,6 @@ class Types extends SubCompiler {
 							}
 							IntCpp;
 						}
-						case "Int64": {
-							IComp.addInclude("haxe/Int64.h", true, true);
-							"int64_t";
-						}
 						case "Float": {
 							if(FloatInclude != null) {
 								IComp.addInclude(FloatInclude[0], true, FloatInclude[1]);
@@ -539,7 +535,6 @@ class Types extends SubCompiler {
 					switch(abs.name) {
 						case "Void": Value;
 						case "Int": Value;
-						case "Int64": Value;
 						case "Float": Value;
 						case "Single": Value;
 						case "Bool": Value;
