@@ -262,7 +262,7 @@ class Types extends SubCompiler {
 							IntCpp;
 						}
 						case "Int64": {
-							IComp.addInclude("haxe/Int64.h", true, true);
+							IComp.addInclude("cstdint", true, true);
 							"int64_t";
 						}
 						case "Float": {
