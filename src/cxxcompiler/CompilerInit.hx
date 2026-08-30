@@ -31,8 +31,6 @@ class CompilerInit {
 		HaxeCompiler.addMetadata("@:headerInclude(\"haxe_CallStack.h\", true)", "haxe.Exception");
 		HaxeCompiler.addMetadata("@:headerCode(\"namespace haxe { class StackItem; }\")", "haxe.Exception");
 		#end
-		HaxeCompiler.addMetadata("@:headerInclude(\"_TypeUtils.h\", true)", "haxe.Int64");
-		HaxeCompiler.addMetadata("@:headerCode(\"#ifndef DEFINE_CLASS_TOSTRING\\n#define DEFINE_CLASS_TOSTRING(...)\\n#endif\")", "haxe.Int64");
 		HaxeCompiler.addMetadata("@:headerCode(\"#ifndef DEFINE_CLASS_TOSTRING\\n#define DEFINE_CLASS_TOSTRING(...)\\n#endif\")", "EReg");
 		#end
 
