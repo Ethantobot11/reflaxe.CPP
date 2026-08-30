@@ -23,6 +23,14 @@ extern class Std {
 	@:include("iostream", true)
 	public static var clog: cxx.Value<cxx.std.ios.OStream>;
 
+	public static inline function int(f:Float):Int {
+	    return untyped __cpp__("(int)({0})", f);
+	}
+	
+	public static inline function string(val:Dynamic):String {
+	    return untyped __cpp__("haxe::ValString({0})", val);
+	}
+
 	// TODO:
 	// public static var wcin: cxx.std.WIStream;
 	// public static var wcout: cxx.std.WOStream;
