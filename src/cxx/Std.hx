@@ -24,11 +24,11 @@ extern class Std {
 	public static var clog: cxx.Value<cxx.std.ios.OStream>;
 
 	public static inline function int(f:Float):Int {
-	    return untyped __cpp__("(int)({0})", f);
+		return cast f;
 	}
-	
+
 	public static inline function string(val:Dynamic):String {
-	    return untyped __cpp__("haxe::ValString({0})", val);
+		return "" + val;
 	}
 
 	// TODO:
